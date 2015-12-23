@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Imageupload</title>
+</head>
+<body>
+<form action="<?php echo e(URL::current()); ?>" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="_token" value="<?php echo e(Session::token()); ?>">
+        <?php foreach($data as $d): ?>
+   <?php echo e($d); ?>
+
+    <?php endforeach; ?>
+    <div>
+        <input type="file" name="file">
+    </div>
+    <div>
+        <button type="submit">Upload!</button>
+    </div>
+</form>
+</body>
+</html>

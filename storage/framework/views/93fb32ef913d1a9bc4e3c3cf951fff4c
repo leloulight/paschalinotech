@@ -1,0 +1,70 @@
+<?php $__env->startSection('nav_bar'); ?>
+<div id="wrapper">
+        <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.php">Paschalinotech admin</a>
+            </div>
+            <div style="color: white;padding: 15px 50px 5px 50px;float: right; font-size: 16px;"> Last access : 30 oct
+                2015 &nbsp; <a href="login.php"
+                               class="btn btn-danger square-btn-adjust">Logout</a></div>
+        </nav>
+                <!-- /. NAV TOP  -->
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+                    <li class="text-center">
+                        <img src="assets/img/find_user.png" class="user-image img-responsive"/>
+                    </li>
+
+
+                    <li>
+                        <a class="active-menu" href="index.php"><i class="fa fa-dashboard fa-3x"></i> Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="categories.php"><i class="fa fa-desktop fa-3x"></i>categories</a>
+                    </li>
+                    <li>
+                        <a href="products.php"><i class="fa fa-qrcode fa-3x"></i>Products</a>
+                    </li>
+                    <li>
+                        <a href="registeration.php"><i class="fa fa-laptop fa-3x"></i> Registeration</a>
+                    </li>
+
+                </ul>
+            </div>
+        </nav>
+                <!-- /. NAV SIDE  -->
+        <div id="page-wrapper">
+            <?php echo $__env->yieldContent('content'); ?>
+        </div>
+</div>
+<?php echo $__env->yieldSection(); ?>
+<?php $__env->startSection('footer_assets_links'); ?>
+    <!-- /. WRAPPER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <?php echo Html::script('assets/js/jquery-1.10.2.js'); ?>
+
+    <!-- BOOTSTRAP SCRIPTS -->
+    <?php echo Html::script('assets/js/bootstrap.min.js'); ?>
+
+    <!-- METISMENU SCRIPTS -->
+    <?php echo Html::script('assets/js/jquery.metisMenu.js'); ?>
+
+    <!-- MORRIS CHART SCRIPTS -->
+    <?php echo Html::script('assets/js/morris/raphael-2.1.0.min.js'); ?>
+
+    <?php echo Html::script('assets/js/morris/morris.js'); ?>
+
+    <!-- CUSTOM SCRIPTS -->
+    <?php echo Html::script('assets/js/custom.js'); ?>
+
+    </body>
+    </html>
+    <?php echo $__env->yieldSection(); ?>

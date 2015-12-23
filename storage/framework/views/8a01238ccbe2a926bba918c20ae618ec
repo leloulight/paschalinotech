@@ -1,0 +1,39 @@
+<?php $__env->startSection('body'); ?>
+    <div class="row">
+        <?php if(count($categories) > 0): ?>
+            <div class="col-md-12 text-center" >
+                <a href="<?php echo e(url('/categories/create')); ?>" class="btn btn-primary" role="button">
+                    Add New Category
+                </a>
+                <hr />
+                <?php echo $__env->make('error-notification', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+            </div>
+        <?php endif; ?>
+        <?php $__empty_1 = true; foreach($categories as $category): $__empty_1 = false; ?>
+            <div class="col-md-3">
+                    <img src="<?php echo e(asset($category->file)); ?>" />
+                    <div class="caption">
+                        <h3><?php echo e($category->name); ?></h3>
+                        <div class="row text-center" style="padding-left:1em;">
+                            <a href="<?php echo e(url('/categories/'.$category->id.'/edit')); ?>" class="btn btn-warning pull-left">Edit</a>
+                            <span class="pull-left">&nbsp;</span>
+                            <?php echo Form::open(['url'=>'/categories/'.$category->id, 'class'=>'pull-left']); ?>
+
+                            <?php echo Form::hidden('_method', 'DELETE'); ?>
+
+                            <?php echo Form::submit('Delete', ['class' => 'btn btn-danger', 'onclick'=>'return confirm(\'Are you sure?\')']); ?>
+
+                            <?php echo Form::close(); ?>
+
+                        </div>
+                        </p>
+                    </div>
+            </div>
+        <?php endforeach; if ($__empty_1): ?>
+            <p>No category yet, <a href="<?php echo e(url('/categories/create')); ?>">add a new category</a>?</p>
+        <?php endif; ?>
+    </div>
+    <div align="center"><?php echo $categories->render(); ?></div>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('global-layout', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -1,0 +1,46 @@
+<?php $__env->startSection('body'); ?>
+   <div class="row">
+      <?php if(count($products) > 0): ?>
+         <div class="col-md-12 text-center" >
+            <a href="<?php echo e(url('/product/create')); ?>" class="btn btn-primary" role="button">
+               Add New Image
+            </a>
+            <hr />
+            <?php echo $__env->make('error-notification', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+         </div>
+      <?php endif; ?>
+      <?php $__empty_1 = true; foreach($products as $product): $__empty_1 = false; ?>
+         <div class="col-md-3">
+            <div class="thumbnail">
+               <img src="<?php echo e(asset($product->file)); ?>" />
+               <div class="caption">
+                  <h3><?php echo e($product->caption); ?></h3>
+                  <p><?php echo substr($product->description, 0,100); ?></p>
+                   <p>Price: &#8358; <?php echo e($product->price); ?></p>
+                  <p>
+                     <div class="row text-center" style="padding-left:1em;">
+                     <a href="<?php echo e(url('/product/'.$product->id.'/edit')); ?>" class="btn btn-warning pull-left">Edit</a>
+                       <span class="pull-left">&nbsp;</span>
+                       <a href="<?php echo e(url('/product/'.$product->id)); ?>" class="btn btn-primary pull-left">Show</a>
+                     <span class="pull-left">&nbsp;</span>
+                     <?php echo Form::open(['url'=>'/product/'.$product->id, 'class'=>'pull-left']); ?>
+
+                        <?php echo Form::hidden('_method', 'DELETE'); ?>
+
+                        <?php echo Form::submit('Delete', ['class' => 'btn btn-danger', 'onclick'=>'return confirm(\'Are you sure?\')']); ?>
+
+                     <?php echo Form::close(); ?>
+
+                     </div>
+                  </p>
+               </div>
+            </div>
+         </div>
+      <?php endforeach; if ($__empty_1): ?>
+         <p>No products yet, <a href="<?php echo e(url('/product/create')); ?>">add a new one</a>?</p>
+      <?php endif; ?>
+   </div>
+   <div align="center"><?php echo $products->render(); ?></div>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('global-layout', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
