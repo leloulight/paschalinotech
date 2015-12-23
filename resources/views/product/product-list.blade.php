@@ -2,15 +2,10 @@
 @section('title')
     <title>Paschalinotech</title>
 @endsection
-@yield('assets_links')
-@yield('nav_bar')
 @section('content')
     <div class="row">
-        <div class="col-md-12">
-            @if(count($products) > 0)
+        <div class="col-md-10 col-md-offset-1">
                 @include('error-notification')
-                @endif
-
                         <!-- Advanced Tables -->
                 <div class="panel panel-success">
                     <div class="panel-heading">
@@ -18,7 +13,7 @@
                     </div>
                     <div class="panel-body">
                         <div class="table-responsive">
-                            <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                            <table class="table table-striped table-bordered  table-hover" id="dataTables-example">
                                 <thead>
                                 <tr>
                                     <th>Image</th>
@@ -30,9 +25,9 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @forelse($products as $product)
-                                    <tr class="odd gradeA">
-                                        <td style="text-align: center;"><img width="80"
+                                @foreach($products as $product)
+                                    <tr class="odd">
+                                        <td style="text-align: center;"><img height="20%"
                                                                              src="{{asset($product->file)}}"/>
                                         </td>
                                         <td>
@@ -42,16 +37,17 @@
                                             &#8358; {{$product->price }}
                                         </td>
                                         <td>
-                                            <a href="{{ url('admin/product/'.$product->id.'/edit') }}"
+                                            <a href="{{ url('admin/products/'.$product->id.'/edit') }}"
                                                class="btn btn-primary btn-block btn-sm pull-left">Edit</a>
                                         </td>
                                         <td>
-                                            <a href="{{ url('admin/product/'.$product->id) }}"
+                                            <a href="{{ url('admin/products/'.$product->id) }}"
                                                class="btn btn-warning btn-block btn-sm pull-left">View</a>
                                         </td>
                                         <td>
-                                            {!! Form::open(['url'=>'admin/product/'.$product->id, 'class'=>'pull-left'])
+                                            {!! Form::open(['url'=>'admin/products/'.$product->id, 'class'=>'pull-left'])
                                             !!}
+                                            {!!csrf_field()!!}
                                             {!! Form::hidden('_method', 'DELETE') !!}
                                             {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-block btn-sm
                                             pull-left', 'onclick'=>'return
@@ -59,13 +55,10 @@
                                             {!! Form::close() !!}
                                         </td>
                                     </tr>
-                                @empty
-                                    <p>No products yet, <a href="{{ url('admin/product/create') }}">add a new
-                                            one</a>?</p>
-                                @endforelse
-                                <div align="center">{!! $products->render() !!}</div>
+                                @endforeach
                                 </tbody>
                             </table>
+                            <!--<div align="center">{!! $products->render() !!}</div>-->
                         </div>
                     </div>
                 </div>
@@ -73,12 +66,11 @@
 
                 <div class="panel panel-success ">
                     <div class="panel-heading ">
-                        Create New Product
+                        Upload New Product
                     </div>
 
-                    {!! Form::open(['url'=>'admin/product', 'method'=>'POST', 'files'=>'true', 'role'=> 'form']) !!}
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
+                    {!! Form::open(['url'=>'admin/products', 'method'=>'POST', 'files'=>'true', 'role'=> 'form']) !!}
+                    {!!csrf_field()!!}
                     <div class="panel-body">
                         <div class="form-group">
                             <label class="control-label" for="category">Category Name:</label>
@@ -94,7 +86,6 @@
                         <div class="form-group">
                             <label class="control-label" for="userfile">Product image:</label>
                             <input type="file" class="form-control" name="userfile">
-
                         </div>
 
                         <div class="form-group">
@@ -115,7 +106,7 @@
 
                         <div class="panel-footer">
                             <button type="submit" class="btn btn-primary">Upload</button>
-                            <a href="{{ url('admin/product') }}" class="btn btn-warning">Cancel</a>
+                            <a href="{{ url('admin/products') }}" class="btn btn-warning">Cancel</a>
                         </div>
                         {!! Form::close() !!}
                     </div>
@@ -123,4 +114,11 @@
         </div>
     </div>
 @endsection
+@section('jquery_for_table')
+    <script>
+        $(document).ready(function () {
+            $('#dataTables-example').dataTable();
+        });
+    </script>
+    @endsection
 

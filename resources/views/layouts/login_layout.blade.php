@@ -19,7 +19,6 @@
 </head>
 <body>
     @yield('login_content')
-@section('footer_assets_links')
     <!-- /. WRAPPER  -->
     <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
     <!-- JQUERY SCRIPTS -->
@@ -35,4 +34,3 @@
     {!!Html::script('assets/js/custom.js')!!}
 </body>
 </html>
-@show

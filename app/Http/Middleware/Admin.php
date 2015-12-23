@@ -32,7 +32,7 @@ class Admin
             if($this->auth->user()->admin){
                 return $next($request);
             }else{
-                return redirect()->guest('home');
+                return redirect()->guest('admin/categories');
             }
         }
     }

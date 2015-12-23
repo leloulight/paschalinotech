@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'from' => ['address' => 'ularapod@gmail.com', 'name' => 'Ifeco Ecommerce'],
+    'from' => ['address' => 'ularapod@gmail.com', 'name' => 'Pascalinotech-Password reset'],
 
     /*
     |--------------------------------------------------------------------------
@@ -67,7 +67,7 @@ return [
     |
     */
 
-    'encryption' => env('MAIL_ENCRYPTION', 'ssl'),
+    'encryption' => env('MAIL_ENCRYPTION', 'tls'),
 
     /*
     |--------------------------------------------------------------------------

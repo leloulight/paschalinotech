@@ -4,7 +4,6 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     @yield('title')
-    @section('assets_links')
         <!-- BOOTSTRAP STYLES-->
         {!!Html::style('assets/css/bootstrap.css')!!}
         <!-- FONTAWESOME STYLES-->
@@ -15,7 +14,6 @@
         {!!Html::style('assets/css/custom.css')!!}
         <!-- GOOGLE FONTS-->
         <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
-    @show
 </head>
 <body>
 <div id="wrapper">
@@ -62,13 +60,13 @@
         <div class="sidebar-collapse">
             <ul class="nav" id="main-menu">
                 <li>
-                    <a class="active-menu" href="home"><i class="fa fa-dashboard fa-3x"></i> Dashboard</a>
+                    <a class="active-menu" href="{{ url('/admin/categories')}}"><i class="fa fa-dashboard fa-3x"></i> Dashboard</a>
                 </li>
                 <li>
                     <a href="{{url('admin/categories')}}"><i class="fa fa-desktop fa-3x"></i>categories</a>
                 </li>
                 <li>
-                    <a href="{{url('admin/product')}}"><i class="fa fa-qrcode fa-3x"></i>Products</a>
+                    <a href="{{url('admin/products')}}"><i class="fa fa-qrcode fa-3x"></i>Products</a>
                 </li>
                 <li>
                     <a href="{{url('auth/register')}}"><i class="fa fa-laptop fa-3x"></i> Registration</a>
@@ -96,12 +94,8 @@
 <!-- Table -->
 {!!Html::script('assets/js/dataTables/jquery.dataTables.js')!!}
 {!!Html::script('assets/js/dataTables/dataTables.bootstrap.js')!!}
-<!-- CUSTOM SCRIPTS -->
-<script>
-    $(document).ready(function () {
-        $('#dataTables-example').dataTable();
-    });
-</script>
+<!-- CUSTOM SCRIPTS-->
+@yield('jquery_for_table')
 {!!Html::script('assets/js/custom.js')!!}
 </body>
 </html>

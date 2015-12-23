@@ -2,17 +2,15 @@
 @section('title')
     <title>Paschalinotech</title>
 @endsection
-@yield('assets_links')
-@yield('nav_bar')
 @section('content')
     <div class="row">
-        <div class="col-md-12">
-            @if(count($categories) > 0)
+        <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-success">
                     <div class="panel-heading">
-                        Add new Category
+                        Upload new Category
                     </div>
                     {!! Form::open(['url'=>'admin/categories', 'method'=>'POST', 'files'=>'true']) !!}
+                    {!!csrf_field()!!}
                     <div class="panel-body">
                         <div class="form-group">
                             <input type="text" class="form-control" name="name" value=""
@@ -51,6 +49,7 @@
                                         </td>
                                         <td>{!! Form::open(['url'=>'admin/categories/'.$category->id,
                                             'class'=>'pull-left']) !!}
+                                            {!!csrf_field()!!}
                                             {!! Form::hidden('_method', 'DELETE') !!}
                                             {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-block
                                             btn-sm',
@@ -65,15 +64,15 @@
                         </div>
                     </div>
                 </div>
-            @else
-
-                <p>No category yet, <a href="{{ url('admin/categories/create') }}">add a new
-                        category</a>?</p>
-            @endif
-            <div align="center">{!! $categories->render() !!}</div>
         </div>
     </div>
 @endsection
-
+@section('jquery_for_table')
+    <script>
+        $(document).ready(function () {
+            $('#dataTables-example').dataTable();
+        });
+    </script>
+@endsection
 
 

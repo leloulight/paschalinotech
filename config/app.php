@@ -146,9 +146,8 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         /*
-         * Scaffold
+         * Html and Imagine
          */
-        Bestmomo\Scafold\ScafoldServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Matriphe\Imageupload\ImageuploadServiceProvider::class,
     ],

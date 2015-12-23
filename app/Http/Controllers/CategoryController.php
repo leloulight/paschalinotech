@@ -11,11 +11,15 @@ use Validator;
 
 class CategoryController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
-        $categories = Category::paginate(10);
+        $categories = Category::paginate();
         return view('category/category-list')->with('categories', $categories);
-
     }
 
     public function create()
