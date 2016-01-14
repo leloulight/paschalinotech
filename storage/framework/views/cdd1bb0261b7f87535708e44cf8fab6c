@@ -1,0 +1,51 @@
+<?php $__env->startSection('body'); ?>
+   <?php echo $__env->make('error-notification', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+   <?php echo Form::model($product,['url' => '/product/'.$product->id, 'method' => 'PUT', 'files'=>true]); ?>
+
+
+   <img src="<?php echo e(asset($product->file)); ?>" xmlns="http://www.w3.org/1999/html" height="150"/>
+      <div class="form-group">
+          <?php echo Form::label('userfile','Product File'); ?>
+
+         <?php echo Form::file('userfile',null,['class'=>'form-control']); ?>
+
+      </div>
+
+      <div class="form-group">
+          <?php echo Form::label('caption','Caption'); ?>
+
+         <?php echo Form::text('caption',null,['class'=>'form-control']); ?>
+
+      </div>
+
+      <div class="form-group">
+         <?php echo Form::label('description','Description'); ?>
+
+         <?php echo Form::textarea('description',null,['class'=>'form-control']); ?>
+
+      </div>
+       <div class="form-group">
+           <?php echo Form::label('price','Price'); ?>
+
+           <?php echo Form::text('price',null,['class'=>'form-control']); ?>
+
+       </div>
+       <div class="form-group">
+           <div class="checkbox">
+               <li>
+                <?php echo Form::checkbox('available',1); ?>
+
+                 <?php echo Form::label('Available'); ?>
+
+                </li>
+               </div>
+       </div>
+
+      <button type="submit" class="btn btn-primary">Save</button>
+      <a href="<?php echo e(url('/product')); ?>" class="btn btn-warning">Cancel</a>
+
+   <?php echo Form::close(); ?>
+
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('global-layout', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -1,0 +1,26 @@
+<?php $__env->startSection('title'); ?>
+    <title>Paschalinotech</title>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->yieldContent('assets_links'); ?>
+<?php echo $__env->yieldContent('nav_bar'); ?>
+<?php $__env->startSection('content'); ?>
+    <?php echo $__env->make('error-notification', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+    <?php echo Form::open(['url'=>'admin/categories', 'method'=>'POST', 'files'=>'true']); ?>
+
+
+    <div class="form-group">
+        <label for="name">Category Name</label>
+        <input type="text" class="form-control" name="name" value="">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Upload</button>
+    <a href="<?php echo e(url('admin/categories')); ?>" class="btn btn-warning">Cancel</a>
+
+    <?php echo Form::close(); ?>
+
+<?php $__env->stopSection(); ?>
+
+
+
+<?php echo $__env->make('layouts.admin', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

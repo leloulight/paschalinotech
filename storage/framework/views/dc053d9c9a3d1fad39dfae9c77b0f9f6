@@ -1,0 +1,56 @@
+<?php $__env->startSection('content'); ?>
+
+    <div id="breadcrumb">
+        <div class="container">
+            <div class="breadcrumb">
+                <li><a href="/">Home</a></li>
+                <li>products</li>
+            </div>
+        </div>
+    </div>
+
+    <section id="portfolio">
+        <div class="container">
+            <br class="center">
+            </br>
+        </div>
+
+        <ul class="portfolio-filter text-center">
+            <li><a class="btn btn-default active" href="/store" data-filter="*">All </a></li>
+            <?php foreach($categories as $category): ?>
+                <?php if(DB::table('products')->where('category_id','=', $category->id)->count()!=0): ?>
+                <li><a class="btn btn-default" href="<?php echo e(url('/store/'.$category->id)); ?>"
+                       data-filter=".bootstrap"><?php echo e($category->name); ?></a></li>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </ul>
+        <!--/#portfolio-filter-->
+        </div>
+        <div class="container">
+            <div class="">
+                <div class="portfolio-items">
+                    <?php foreach($products as $product): ?>
+                        <div class="portfolio-item apps col-xs-12 col-sm-4 col-md-3">
+                            <div class="recent-work-wrap">
+                                <img class="img-responsive" src="<?php echo e(asset($product->file)); ?>" alt="<?php echo e($product->file); ?>">
+
+                                <div class="overlay">
+                                    <div class="recent-work-inner">
+                                        <h2><?php echo e($product->caption); ?></h2>
+
+                                        <p>Price: &#8358; <?php echo e($product->price); ?></p>
+                                        <a class="preview" href="<?php echo e(url('product/'.$product->id)); ?>"
+                                           rel="prettyPhoto"><i class="fa fa-eye"></i> View</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!--/.portfolio-item-->
+                    <?php endforeach; ?>
+                </div>
+            </div>
+            <div align="center"><?php echo $products->render(); ?></div>
+        </div>
+    </section><!--/#portfolio-item-->
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.store', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

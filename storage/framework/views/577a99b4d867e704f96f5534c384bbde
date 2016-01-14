@@ -1,0 +1,20 @@
+<?php $__env->startSection('body'); ?>
+    <?php echo $__env->make('error-notification', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <?php echo Form::model($categories,['url' => '/categories/'.$categories->id, 'method' => 'PUT', 'files'=>true]); ?>
+
+
+    <div class="form-group">
+        <?php echo Form::label('name','Category Name'); ?>
+
+        <?php echo Form::text('name',null,['class'=>'form-control']); ?>
+
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a href="<?php echo e(url('/categories')); ?>" class="btn btn-warning">Cancel</a>
+
+    <?php echo Form::close(); ?>
+
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('global-layout', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

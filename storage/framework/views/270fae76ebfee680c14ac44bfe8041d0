@@ -1,0 +1,82 @@
+<?php $__env->startSection('title'); ?>
+    <title>Paschalinotech</title>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->yieldContent('assets_links'); ?>
+<?php echo $__env->yieldContent('nav_bar'); ?>
+<?php $__env->startSection('content'); ?>
+    <div class="row">
+        <div class="col-md-12">
+            <?php echo $__env->make('error-notification', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+            <div class="panel panel-success">
+                <div class="panel-heading ">
+                    Edit Product
+                </div>
+                <?php echo Form::model($product,['url' => 'admin/products/'.$product->id, 'method' => 'PUT', 'files'=>true]); ?>
+
+                <?php echo csrf_field(); ?>
+
+                <?php
+                $category_name = DB::table('categories')->where('id', $product->category_id)->value('name');
+                ?>
+                <div class="panel-body">
+
+                    <div class="form-group">
+                        <img src="<?php echo e(asset($product->file)); ?>"
+                             xmlns="http://www.w3.org/1999/html"
+                             height="150"/>
+                    </div>
+                    <div class="form-group" for="userfile">
+                        <label for="file" class="control-label"></label>
+                        <?php echo Form::file('file',null,['class'=>'form-control']); ?>
+
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="category">Category Name: </label>
+                        <select class="form-control" name="category">
+                            <option  value="">Select Category Name</option>
+                            <?php foreach($categories as $category): ?>
+                                <?php if($category->name == $category_name): ?>)
+                                <option selected value="<?php echo e($category->name); ?>"><?php echo e($category->name); ?></option>
+                                <?php else: ?>
+                                    <option value="<?php echo e($category->name); ?>"><?php echo e($category->name); ?></option>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
+                        </select>
+
+                    </div>
+
+                    <div class="form-group">
+                        <?php echo Form::label('caption','Caption:',['class'=>'control-label']); ?>
+
+                        <?php echo Form::text('caption',null,['class'=>'form-control']); ?>
+
+                    </div>
+
+                    <div class="form-group">
+                        <?php echo Form::label('description','Description:',['class'=>'control-label']); ?>
+
+                        <?php echo Form::textarea('description',null,['class'=>'form-control']); ?>
+
+                    </div>
+                    <div class="form-group">
+                        <?php echo Form::label('price','Price:',['class'=>'control-label']); ?>
+
+                        <?php echo Form::text('price',null,['class'=>'form-control']); ?>
+
+                    </div>
+
+                </div>
+                <div class="panel-footer">
+                    <button type="submit" class="btn btn-primary">Update</button>
+                    <a href="<?php echo e(url('admin/products')); ?>" class="btn btn-warning">Cancel</a>
+                </div>
+                <?php echo Form::close(); ?>
+
+            </div>
+        </div>
+    </div>
+<?php $__env->stopSection(); ?>
+
+
+
+<?php echo $__env->make('layouts.admin', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
